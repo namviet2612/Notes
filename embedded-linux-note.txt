@@ -1,0 +1,55 @@
+1. What is embedded linux?
+Embedded Linux is the combination of Linux kernel and various open-source
+components of embedded system
+2. Advantages:
+- Re-using components
+- Low cost
+- Full control
+- Quality assurance and tested from community
+- Eases testing of new features
+3. Embedded hardware:
+- Wide range of architecture:
+    + x86 and x86-64 of PC platforms and other embedded system
+    + ARM
+    + PowerPC
+    + MIPS (in networking embedded system)
+    ...
+- Processor and architecture:
+    + MMU = Memory management unit
+    + Linux are not designed for small microcontrollers
+    + Beside the toolchain, the bootloader and the kernel, all other components
+    are generally architecture-independent
+- RAM and storage
+    + RAM: 32 MB at least,sometimes 8MB with tiny system
+    + Storage: 4MB is required, but usually more is needed
+- Communication
+    + Many common communication (I2C, CAN, SPI, ...) and extensive networking (
+    ETH, Wifi, Bluetooth,...) are supported
+4. Embedded Linux system architecture
+- Software component
+    + Cross-compilation toolchain: compiler that runs on the development-host,
+    but generates code for the target
+    + Bootloader: Started by the hardware, basic initialization, loading and
+    executing Linux kernel
+    + Linux Kernel: Contain the device drivers, process and memories management,
+    stack, network drivers, services
+    + C library: The interface between the kernel and the user space application
+    + Libraries or applications
+5. Software packages:
+- Linux distribution provides a way to install, update and uninstall application
+and libraries: packages
+- .deb on Debian and Ubuntu, .rpm on Red Hat, Fedora
+- Packages are stored in repositories, HTTP or FTP servers.
+- Managing:
+    + Repositories stored in /etc/apt/sources.list
+    + sudo apt-get update
+    + apt-cache search <keyword>: to find a package to install
+    + sudo apt-get install <package>
+    + sudo apt-get remove <package>
+    + sudo apt-get dist-upgrad: install all available package updates
+    + apt-cache show <package>: get info about a package
+6. Host vs target
+- Host is the development workstation, typically a powerful PC
+- Target is the embedded system under development
+- Connection: serial line for debugging, Ethernet, JTAG interface
+- Tools: picocom, putty, ...
