@@ -1,0 +1,137 @@
+SQL noted
+
+1. Introduction
+SQL stand for Structure Query Language -> let you access and manipulate
+databases
+
+RDBMS stand for Relational Database Management System, is the basis for SQL, and
+for all modern database systems: MS SQL Server, MySQL, Microsoft Access
+
+Tables: is the place where data stored, has columns and rows
+
+Column: represent a field in a table
+
+Row: represent a record in a table
+
+2. SQL syntax
+SQL is not case sensitive
+
+Some of the most important SQL commands
+
+SELECT: extracts data from a database
+UPDATE: update data in a database
+DELETE: deletes data from a database
+INSERT INFO: insert new data in to a database
+CREATE DATABASE: create a new database
+ALTER DATABASE: modifies a database
+DROP DATABASE: deletes a table
+CREATE INDEX: creates an index (search key)
+DROP INDEX: deletes an index
+
+3.SQL Select
+
+Syntax: SELECT column1, column2, ... FROM table_name;
+
+In case of select all data in table:
+SELECT * FROM table_name;
+
+SELECT DISTINCT is used to only display distinct (different) values
+
+Syntax: SELECT DISTINCT column1, column2, ... FROM table_name
+
+Ex: SELECT * FROM CustomersTable //Extract all the data of CustomersTable
+    SELECT CustomerName, CustomerPhone FROM CustomersTable
+
+4.SQL Where
+WHERE is used to filter record, extract the records fulfilled the requirement
+
+Syntax: SELECT column1, column2, ... FROM table_name
+        WHERE condition;
+
+Ex: SELECT * FROM CustomersTable WHERE CustomerID = 1
+
+5.SQL And, Or, Not
+These keywords are used for condition when using Where
+
+6.SQL Order By
+ORDER BY keyword is used to sort the result in ascending or descending
+Syntax: SELECT column1, column2, ... FROM table_name
+        ORDER BY column1, column2, ... ASC|DESC
+
+ASC: ascending
+DESC: descending
+
+7. SQL Insert Into
+
+Syntax: INSERT INTO table_name (column1, column2, ...)
+        VALUES ('value_of_c1', 'value_of_c2', ...);
+
+In some tables, the ID will auto-increment and not necessary to add to the command
+
+If there is missing additional value of a field, the 'null' will be fill
+
+Ex: INSERT INTO CustomersTable (CustomerName, CustomerPhone, CustomerAddress)
+    VALUES ('Nam', '82108403', 'Hanoi')
+
+8. What is a NULL value
+
+A field with a NULL value is a field with no value. NULL value is different
+from zero, or a field that contain space: A field with a NULL value is left
+blank during record creation
+
+9. SQL Update Statement
+
+Syntax: UPDATE table_name
+        SET column1 = value1, column2 = value2, ...
+        WHERE condition;
+
+If missing WHERE clause, the whole table will be updated
+
+10. SQL Delete
+
+Syntax: DELETE FROM table_name
+        WHERE condition;
+
+If missing WHERE clause, the whole table will be deleted
+
+11. SQL Select Top, Limit or Rownum
+Extract the data with the specific number of records
+
+11.1 SQL Select Top (SQL Server, MS Access)
+
+Syntax: SELECT TOP number_of_top|percent column_name(s)
+        FROM table_name
+        WHERE condition;
+
+11.2 SQL Limit (mySQL)
+
+Syntax: SELECT column_name(s)
+        FROM table_name
+        WHERE condition
+        LIMIT number;
+
+11.3 SQL Rownum (Oracle)
+
+Syntax: SELECT column_name(s)
+        FROM table_name
+        WHERE condition AND ROWNUM < number
+
+12. SQL Like and Wildcards
+
+Syntax: SELECT column_name(s) 
+	FROM table_name
+	WHERE col_n LIKE condition
+
+Ex: SELECT * FROM Customers WHERE CustomerID LIKE '1%'
+
+-> FInd all the records with CustomerID start with 1
+
+Wildcards:
+	'_' represent whatever character
+	'%' represent zero or none character
+
+-> '1%' : Find the values with first character as 1
+-> '1_' : Find the values with 2 characters, first character as 1
+-> '%1% : Find the values with number 1 appear anywhere
+-> '_1_': Find the values with 3 characters, the number 1 in 2nd position
+

@@ -1,3 +1,4 @@
+PART1: INTRODUCTION
 1. What is embedded linux?
 Embedded Linux is the combination of Linux kernel and various open-source
 components of embedded system
@@ -46,10 +47,42 @@ and libraries: packages
     + apt-cache search <keyword>: to find a package to install
     + sudo apt-get install <package>
     + sudo apt-get remove <package>
-    + sudo apt-get dist-upgrad: install all available package updates
+    + sudo apt-get dist-upgrade: install all available package updates
     + apt-cache show <package>: get info about a package
 6. Host vs target
 - Host is the development workstation, typically a powerful PC
 - Target is the embedded system under development
 - Connection: serial line for debugging, Ethernet, JTAG interface
 - Tools: picocom, putty, ...
+
+PART2: CROSS-COMPILING TOOLCHAINS
+1. Definition:
+- Run on your workstation, but generate code for your target
+2. Machines in build procedures:
+- 3 types in total:
+    + The build machine: where the toolchain is built
+    + The host machine: where the toolchain will be executed
+    + The target machine: where the binaries created by the toolchain are
+    executed
+- 4 common build types:
+    + Native build: build, host and target on same workstation
+    + Cross build: build, host is workstation, target is the embedded system
+    (the most common case)
+    + Cross-native build: build is workstation, host and target is the embedded
+    system
+    + Canadian build: build on A, host on B, target on C
+3. Binutils:
+- Is a set of tools to generate and manipulate binaries for a given CPU
+architecture
+    + as: the assembler, generates binary code for assembler source code
+    + ld: the linker
+    + ar, ranlib: to generate .a archives, used for libraries
+    + objdump, readelf, size, nm, strings: to inspect binaries
+    + strip: to strip parts of binaries that just needed for debugging
+4. Kernel header:
+- The C library and compiled programs need to interact with the kernel
+    + Available system calls and their numbers
+    + Constant definitions
+    + Data structures, etc.
+- Therefore, compiling the C library requires kernel header
+- Available in <linux/...> and <asm/...> and a few other directories
