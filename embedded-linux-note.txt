@@ -86,3 +86,62 @@ architecture
     + Data structures, etc.
 - Therefore, compiling the C library requires kernel header
 - Available in <linux/...> and <asm/...> and a few other directories
+5. C/C++ compiler:
+- GCC: GNU Compiler Collection
+6. C library
+- Interface between the application and the kernel
+- Provides the well-known standard C API to ease application development
+- Several C libraries: glibc, uClibc, musl,...
+6.1 glibc
+- C library for the GNU project
+- Quite big for small embedded systems.
+6.2 uClibc-ng
+- Continuation of the old uClibc project
+- Lightweight C library for small embedded systems
+6.3 musl C
+- Lightweight, fast and simple library for embedded systems
+7. Toolchain options
+7.1 ABI:
+- ABI: Application Binary Interface, defines the calling conventions (how
+function argument are passed, how system calls are made,..) and the organization
+of a structure
+- On ARM, two main ABI: EABI and OABI
+- On MIPS, several ABIs: o32, o64, n32, n64
+7.2 Floating point support
+- For processors have floating point unit, the toolchain generate hard float
+code, in order to use floating point instructions directly
+- For processors without floating point unit, two solutions:
++ Generate hard float code and the kernel will emulate the floating point
+instructions.
++ Generate soft float code, calls to user space library
+7.3 CPU optimization flags:
+- A set of cross-compiling tools is specific to a CPU architecture (ARM, x86,
+PowerPC, MIPS)
+- Some further options:
++ -march allows to select a specific target instruction set
++ -mtune allows to optimize code for a specific CPU
+8. Obtain a toolchain:
+- Build a toolchain manually is diffcult and painful.
+-> Solution: get a pre-compiled toolchain
+- Make sure the toolchain meet the reqs
+- Many root build systems allow the cross-compiling toolchain: buildroot,
+PTXdists, OpenEmbedded/Yocto Project
+- Another solution is to use utilities that automate the process of toolchain
+building
++ Advantages: be like pre-compiled toolchain, don't need to mess up with all the
+details of the build process, more flexibility in terms of toolchain
+configuration, contain several patches that fix known issues
++ Crosstool-ng: https://crosstool-ng.github.io/
+9. Toolchain contents:
+- The cross compiling toolchain binaries, in bin/. The directory should be added
+to your PATH for easy usage
+- One or several sysroot, each contain the C libraries and related libraries, C
+library headers and kernel headers
+
+PART3: BOOTLOADER
+1. Boot sequence:
+The bootloader is a piece of code responsible for:
+- Basic HW initialization
+- Loading of an application binary, usually an operating system kernel
+- Possibly decompression of the application binary
+- Execution of application binary

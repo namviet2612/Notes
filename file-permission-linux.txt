@@ -20,4 +20,4 @@ restriction of his group or others
     Permission      Action                                  chmod option
     read            (view content, i.e. ls command)         r or 4
     write           (create or remove files from dir)       w or 2
-    execute         (cd into directory)                     filx or 1
+    execute         (cd into directory)                     x or 1
